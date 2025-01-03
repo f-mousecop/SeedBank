@@ -1,0 +1,14 @@
+@Composable
+fun SeedBankTheme () {
+    Column(
+        modifier = Modifier
+            .statusBarsPadding()
+            .padding(horizontal = 40.dp)
+            .verticalScroll(rememberScrollState())
+            .safeDrawingPadding(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+    }
+}
