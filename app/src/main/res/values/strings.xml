@@ -2,4 +2,8 @@
     <string name="app_name">Seed Bank</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="arrowhead_plant">Arrowhead Plant (Vine)</string>
+    <string name="cape_honeysuckle">Cape Honeysuckle</string>
+    <string name="zinnia">Zinnia</string>
+
 </resources>

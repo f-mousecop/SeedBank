@@ -10,8 +10,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -104,14 +106,35 @@ fun SeedBankLayout(content: @Composable () -> Unit) {
     }
 }
 
+/*@Composable
+fun HomeScreen(navController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Home Screen")
+        Button(onClick = { navController.navigate("details") }) {
+            Text("Go to details")
+        }
+    }
+}*/
+
 @Composable
 fun ImageCarousel(modifier: Modifier = Modifier) {
     var result by remember { mutableStateOf(1) }
+//    var plantName by remember { mutableStateOf("") }
 
     val imageResource = when (result) {
         1 -> R.drawable.arrowhead_plant
         2 -> R.drawable.cape_honeysuckle
         else -> R.drawable.zinnia
+    }
+
+    val plantName = when (result) {
+        1 -> stringResource(R.string.arrowhead_plant)
+        2 -> stringResource(R.string.cape_honeysuckle)
+        else -> stringResource(R.string.zinnia)
     }
     Column(
         modifier = modifier
@@ -126,18 +149,35 @@ fun ImageCarousel(modifier: Modifier = Modifier) {
             painter = painterResource(imageResource),
             contentDescription = result.toString()
         )
+        Text(
+            text = plantName,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(80.dp))
 
         Row (
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.Bottom
         ) {
-            Button(onClick = { if(result > 1) result-- }) {
+            Button(
+                onClick = { if(result > 1) result-- },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 16.dp)
+            ) {
                 Text(stringResource(R.string.previous))
             }
-            Button(onClick = { if(result < 3) result++ else result = 1}) {
+            Button(
+                onClick = { if(result < 3) result++ else result = 1},
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp)
+            ) {
                 Text(stringResource(R.string.next))
             }
         }
