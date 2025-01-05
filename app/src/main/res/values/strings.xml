@@ -5,5 +5,9 @@
     <string name="arrowhead_plant">Arrowhead Plant (Vine)</string>
     <string name="cape_honeysuckle">Cape Honeysuckle</string>
     <string name="zinnia">Zinnia</string>
+    <string name="image_bank">Image Bank</string>
+    <string name="plant_log">Plant Log</string>
+    <string name="insert_new">Insert New</string>
+    <string name="back_button">Back</string>
 
 </resources>
