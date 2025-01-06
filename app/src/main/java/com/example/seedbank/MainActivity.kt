@@ -68,38 +68,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class SeedBankScreen(@StringRes val title: Int) {
-    Start(title = R.string.app_name),
-    ImageLogs(title = R.string.image_bank),
-    Insertion(title = R.string.insert_new),
-    PlantLogs(title = R.string.plant_log)
-}
 
 /*@Composable
-fun SeedBankAppBar(
-    currentScreen: SeedBankScreen,
-    canNavigateBack: Boolean,
-    navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    TopAppBar(
-        title = { Text(stringResource(currentScreen.title)) },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
-        modifier = modifier,
-        navigationIcon = {
-            IconButton(onCLick = navigateUp) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(R.string.back_button)
-                )
-            }
-        }
-    )
-}*/
-
-@Composable
 fun SeedBankLayout(content: @Composable () -> Unit) {
     var presses by remember { mutableStateOf(0) }
     val amount = presses.toString()
@@ -135,90 +105,14 @@ fun SeedBankLayout(content: @Composable () -> Unit) {
             content()
         }
     }
-}
-
-@Composable
-fun ImageCarousel(modifier: Modifier = Modifier) {
-    var result by remember { mutableStateOf(1) }
-//    var plantName by remember { mutableStateOf("") }
-
-    val imageResource = when (result) {
-        1 -> R.drawable.arrowhead_plant
-        2 -> R.drawable.cape_honeysuckle
-        else -> R.drawable.zinnia
-    }
-
-    val plantName = when (result) {
-        1 -> stringResource(R.string.arrowhead_plant)
-        2 -> stringResource(R.string.cape_honeysuckle)
-        else -> stringResource(R.string.zinnia)
-    }
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Column(
-            modifier = modifier
-                .align(alignment = Alignment.Center)
-                .verticalScroll(rememberScrollState()),
-            //        verticalArrangement = Arrangement.Top
-        ) {
-            Card(modifier = Modifier.align(alignment = Alignment.CenterHorizontally)) {
-                Image(
-                    modifier = Modifier
-                        .size(300.dp),
-                    painter = painterResource(imageResource),
-                    contentDescription = result.toString(),
-                    contentScale = ContentScale.Crop
-                )
-            }
-            
-            Spacer(modifier = Modifier.height(48.dp))
-            Text(
-                text = plantName,
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterHorizontally)
-            )
-        }
+}*/
 
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(alignment = Alignment.BottomCenter),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-//            verticalAlignment = Alignment.Bottom
-        ) {
-            Button(
-                onClick = { if (result > 1) result-- },
-                modifier = Modifier
-                    .widthIn(100.dp)
-//                    .padding(end = 16.dp)
-            ) {
-                Text(stringResource(R.string.previous))
-            }
-//            Spacer(modifier = Modifier.width(10.dp))
-            Button(
-                onClick = { if (result < 3) result++ else result = 1 },
-                modifier = Modifier
-                    .widthIn(100.dp)
-//                    .padding(start = 16.dp)
-            ) {
-                Text(stringResource(R.string.next))
-            }
-        }
-    }
-}
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun SeedBankApp() {
     SeedBankTheme {
-        SeedBankLayout(content = {
-            ImageCarousel(modifier = Modifier
-                .fillMaxSize()
-//                .wrapContentSize(Alignment.Center)
-            )
-        })
+        SeedBankApp()
     }
-}
+}*/
