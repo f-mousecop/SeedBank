@@ -1,6 +1,6 @@
 package com.example.seedbank.ui
 
-import android.graphics.drawable.Icon
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,16 +11,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,25 +34,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.seedbank.SeedBankScreen
 import com.example.seedbank.ui.theme.SeedBankTheme
 
 @Composable
 fun InsertionScreen(
     dataViewModel: DataViewModel,
     navController: NavController,
+    onItemClick: () -> Unit,
     modifier: Modifier
 ) {
     val plantList = dataViewModel.plantList
-    val seedList = dataViewModel.seedList
     Box(modifier = Modifier
-        .padding(24.dp),
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.secondaryContainer),
+
         contentAlignment = Alignment.TopCenter
     ) {
         Column(
@@ -67,6 +69,8 @@ fun InsertionScreen(
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             AddPlantInput(onPlantAdded = { dataViewModel.addPlant(it) })
+            Spacer(modifier = Modifier.height(24.dp))
+            HorizontalDivider()
             PlantList(
                 plantList = plantList,
                 onPlantToggled = dataViewModel::togglePlant,
@@ -75,23 +79,42 @@ fun InsertionScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
         }
-    }
-        /*Column(
-            verticalArrangement = Arrangement.Center,
+        Column(
             modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AddPlantInput(onPlantAdded = { dataViewModel.addPlant(it) })
-            PlantList(
-                plantList = plantList,
-                onPlantToggled = dataViewModel::togglePlant,
-                onPlantDeleted = dataViewModel::deletePlant
+            Text(
+                text = "Need to add any new seeds?",
+                modifier = Modifier,
             )
-        }*/
-        /*AddSeedInput(onSeedAdded = { dataViewModel.addSeed(it) })
-        SeedList(
-            seedList = seedList,
-            onSeedDeleted = dataViewModel::deleteSeed
-        )*/
+            Button(
+                modifier = Modifier,
+                onClick = onItemClick
+            ) {
+                Text(
+                    text = "Seed Insert"
+                )
+            }
+        }
+    }
+    /*Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+    ) {
+        AddPlantInput(onPlantAdded = { dataViewModel.addPlant(it) })
+        PlantList(
+            plantList = plantList,
+            onPlantToggled = dataViewModel::togglePlant,
+            onPlantDeleted = dataViewModel::deletePlant
+        )
+    }*/
+    /*AddSeedInput(onSeedAdded = { dataViewModel.addSeed(it) })
+    SeedList(
+        seedList = seedList,
+        onSeedDeleted = dataViewModel::deleteSeed
+    )*/
 }
 
 /*@Composable
@@ -123,17 +146,26 @@ fun AddItemInput(
     }
 }*/
 
+
 @Composable
 fun AddPlantInput(onPlantAdded: (String) -> Unit) {
     var text by remember { mutableStateOf("") }
 
-    Row {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         TextField(
+            label = { Text("Common plant name")},
             value = text,
             onValueChange = { text = it },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .widthIn(max = 240.dp)
+                .shadow(elevation = 5.dp, shape = CircleShape)
         )
-        Button(onClick = {
+        Spacer(Modifier.width(20.dp))
+        Button(
+            shape = RoundedCornerShape(40),
+            onClick = {
             if(text.isNotBlank()) {
                 onPlantAdded(text)
                 text = ""
@@ -183,16 +215,6 @@ fun PlantList(
     }*/
 }
 
-/*@Composable
-fun SeedList(
-    seedList: List<SeedData>,
-    onSeedDeleted: (Int) -> Unit
-) {
-    LazyColumn {
-        items(seedList) { seed ->
-            SeedItemRow(seed, onSeedDeleted)
-        }
-}*/
 
 @Composable
 fun PlantItemRow(plant: PlantData,
@@ -216,27 +238,7 @@ fun PlantItemRow(plant: PlantData,
     }
 }
 
-@Composable
-fun SeedItemRow(
-    seed: SeedData,
-    onSeedDeleted: (Int) -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onSeedDeleted(seed.id) }
-            .padding(vertical = 4.dp)
-    ) {
-        Text(
-            text = seed.text,
-            modifier = Modifier.weight(1f),
-            style = MaterialTheme.typography.bodySmall
-        )
-        IconButton(onClick = { onSeedDeleted(seed.id) }) {
-            Icon(Icons.Filled.Delete, contentDescription = "Delete")
-        }
-    }
-}
+
 @Preview (showBackground = true)
 @Composable
 fun InsertionScreenPreview() {
@@ -244,6 +246,7 @@ fun InsertionScreenPreview() {
         InsertionScreen(
             dataViewModel = DataViewModel(),
             navController = rememberNavController(),
+            onItemClick = { },
             modifier = Modifier
         )
     }

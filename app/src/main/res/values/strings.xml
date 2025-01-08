@@ -8,6 +8,7 @@
     <string name="image_bank">Image Bank</string>
     <string name="plant_log">Plant Log</string>
     <string name="insert_new">Insert New</string>
+    <string name="insert_seeds">Add Seeds</string>
     <string name="back_button">Back</string>
     <string name="title_activity_seed_bank_screen">SeedBankScreen</string>
 
