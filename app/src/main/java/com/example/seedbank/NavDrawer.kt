@@ -107,7 +107,7 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.Insertion.name) {
-                                popUpTo(0)
+                                popUpTo(-1)
                             }
                         }
                     )
@@ -122,7 +122,7 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.Seeds.name) {
-                                popUpTo(0)
+                                popUpTo(-1)
                             }
                         }
                     )
@@ -137,7 +137,7 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.ImageLogs.name) {
-                                popUpTo(0)
+                                popUpTo(-1)
                             }
                         }
                     )
@@ -151,7 +151,7 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.PlantLogs.name) {
-                                popUpTo(0)
+                                popUpTo(-1)
                             }
                         }
                     )
@@ -192,7 +192,7 @@ fun DetailedNavDrawer(
                             val result = snackbarHostState
                                 .showSnackbar(
                                     message = "Insert a new plant or seed entry",
-                                    actionLabel = "Action",
+                                    actionLabel = "OK",
                                     withDismissAction = true,
                                     duration = SnackbarDuration.Indefinite
                                 )

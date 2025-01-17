@@ -224,7 +224,7 @@ fun PlantItemRow(plant: PlantData,
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onPlantToggled(plant.id) }
+//            .clickable { onPlantToggled(plant.id) }
     ) {
         Checkbox(checked = plant.isHealthy, onCheckedChange = { onPlantToggled(plant.id) })
         Text(

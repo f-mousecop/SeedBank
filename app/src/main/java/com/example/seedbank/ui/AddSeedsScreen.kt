@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -34,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -74,6 +76,7 @@ fun AddSeedsScreen(
 
             SeedList(
                 seedList = seedList,
+                onSeedToggled = dataViewModel::toggleSeed,
                 onSeedDeleted = dataViewModel::deleteSeed
             )
 
@@ -85,11 +88,12 @@ fun AddSeedsScreen(
 @Composable
 fun SeedList(
     seedList: List<SeedData>,
+    onSeedToggled: (Int) -> Unit,
     onSeedDeleted: (Int) -> Unit
 ) {
     LazyColumn {
         items(seedList) { seed ->
-            SeedItemRow(seed, onSeedDeleted)
+            SeedItemRow(seed, onSeedToggled, onSeedDeleted)
         }
     }
 }
@@ -97,17 +101,20 @@ fun SeedList(
 @Composable
 fun SeedItemRow(
     seed: SeedData,
+    onSeedToggled: (Int) -> Unit,
     onSeedDeleted: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onSeedDeleted(seed.id) }
+//            .clickable { onSeedDeleted(seed.id) }
             .padding(vertical = 4.dp)
     ) {
+        Checkbox(checked = seed.isGrowing, onCheckedChange = { onSeedToggled(seed.id) })
         Text(
             text = seed.text,
             modifier = Modifier.weight(1f),
+            textDecoration = if(seed.isGrowing) TextDecoration.LineThrough else null,
             style = MaterialTheme.typography.bodyLarge
         )
         IconButton(onClick = { onSeedDeleted(seed.id) }) {

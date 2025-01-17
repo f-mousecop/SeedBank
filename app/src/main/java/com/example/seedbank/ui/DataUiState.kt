@@ -8,5 +8,6 @@ data class PlantData(
 
 data class SeedData(
     val id: Int = 0,
-    val text: String = ""
+    val text: String = "",
+    val isGrowing: Boolean = false
 )

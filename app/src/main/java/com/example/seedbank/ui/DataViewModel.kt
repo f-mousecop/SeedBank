@@ -4,8 +4,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
+import com.example.seedbank.data.PlantRepository
 
-class DataViewModel : ViewModel() {
+class DataViewModel(private val plantRepository: PlantRepository) : ViewModel() {
     private val _plantList = mutableStateListOf<PlantData>()
     val plantList: List<PlantData> get() = _plantList
 
@@ -30,6 +31,14 @@ class DataViewModel : ViewModel() {
             val index = _plantList.indexOf(it)
             _plantList[index] = it.copy(isHealthy = !it.isHealthy)
         }*/
+    }
+
+    fun toggleSeed(id: Int) {
+        val index = _seedList.indexOfFirst { it.id == id }
+        if(index != -1) {
+            val updateSeed = _seedList[index].copy(isGrowing = !_seedList[index].isGrowing)
+            _seedList[index] = updateSeed
+        }
     }
 
     fun deletePlant(id: Int) {
