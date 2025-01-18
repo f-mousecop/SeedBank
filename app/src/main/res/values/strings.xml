@@ -18,5 +18,7 @@
     <string name="quantity_req">Quantity</string>
     <string name="required_fields">*required fields</string>
     <string name="plant_entry">Plant Entry</string>
+    <string name="plant_bank">Plant Bank</string>
+    <string name="no_plant_description">Oops!\nNo plants in the inventory.\nTap + to add.</string>
 
 </resources>

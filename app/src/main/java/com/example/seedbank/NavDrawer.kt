@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -107,12 +109,27 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.PlantEntry.name) {
-                                popUpTo(0)
+                                popUpTo(-1)
                             }
                         }
                     )
 
                     NavigationDrawerItem(
+                        label = { Text("Plant Bank") },
+                        selected = false,
+                        icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = null)},
+                        onClick =  {
+                            println("hello")
+                            scope.launch {
+                                drawerState.close()
+                            }
+                            navController.navigate(SeedBankScreen.PlantBank.name) {
+                                popUpTo(-1)
+                            }
+                        }
+                    )
+
+                    /*NavigationDrawerItem(
                         label = { Text("Log Plant") },
                         selected = false,
                         icon = { Icon(Icons.Default.Add, contentDescription = null)},
@@ -125,9 +142,9 @@ fun DetailedNavDrawer(
                                 popUpTo(-1)
                             }
                         }
-                    )
+                    )*/
 
-                    NavigationDrawerItem(
+                    /*NavigationDrawerItem(
                         label = { Text("Add Seeds") },
                         selected = false,
                         icon = { Icon(Icons.Default.Add, contentDescription = null)},
@@ -140,7 +157,7 @@ fun DetailedNavDrawer(
                                 popUpTo(-1)
                             }
                         }
-                    )
+                    )*/
 
                     NavigationDrawerItem(
                         label = { Text("Image Logs") },
@@ -214,8 +231,8 @@ fun DetailedNavDrawer(
                             when(result) {
                                 SnackbarResult.ActionPerformed -> {
                                     println("Action performed")
-                                    navController.navigate(SeedBankScreen.Insertion.name) {
-                                        popUpTo(0)
+                                    navController.navigate(SeedBankScreen.PlantEntry.name) {
+                                        popUpTo(-1)
                                     }
                                 }
                                 SnackbarResult.Dismissed -> {

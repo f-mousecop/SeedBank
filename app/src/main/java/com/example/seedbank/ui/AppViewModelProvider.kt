@@ -16,6 +16,11 @@ object AppViewModelProvider {
         initializer {
             PlantEntryViewModel(seedBankApplication().container.plantRepository)
         }
+
+        // Initializer for PlantBankViewModel
+        initializer {
+            PlantBankViewModel(seedBankApplication().container.plantRepository)
+        }
     }
 }
 

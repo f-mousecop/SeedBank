@@ -23,24 +23,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.seedbank.R
-import com.example.seedbank.model.Plant
+import com.example.seedbank.data.Plant
+import com.example.seedbank.model.PlantType
 
 @Composable
 fun PlantCard(
-    plant: Plant,
+    plantType: PlantType,
     onItemClick: () -> Unit,
     modifier: Modifier = Modifier) {
     Card(modifier = modifier.background(MaterialTheme.colorScheme.secondaryContainer)) {
         Column {
             Image(
-                painter = painterResource(plant.imageResourceId),
-                contentDescription = stringResource(plant.stringResourceId),
+                painter = painterResource(plantType.imageResourceId),
+                contentDescription = stringResource(plantType.stringResourceId),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(194.dp)
                     .clickable(
                         enabled = true,
-                        onClickLabel = stringResource(plant.stringResourceId),
+                        onClickLabel = stringResource(plantType.stringResourceId),
                     ) {
                         Log.d("Userplantlogsscreen", "ButtonClicked")
                         onItemClick()
@@ -48,7 +49,7 @@ fun PlantCard(
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = LocalContext.current.getString(plant.stringResourceId),
+                text = LocalContext.current.getString(plantType.stringResourceId),
                 modifier = Modifier
                     .padding(16.dp),
                 style = MaterialTheme.typography.headlineSmall
@@ -59,14 +60,14 @@ fun PlantCard(
 
 @Composable
 fun PlantList(
-    plantList: List<Plant>,
+    plantList: List<PlantType>,
     navController: NavController,
     onItemClick: () -> Unit,
     modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
         items(plantList) { plant ->
             PlantCard(
-                plant = plant,
+                plantType = plant,
                 onItemClick = onItemClick,
                 modifier = Modifier.padding(8.dp)
             )
@@ -78,6 +79,6 @@ fun PlantList(
 @Composable
 private fun PlantLogPreview() {
     PlantCard(
-        Plant(R.string.arrowhead_plant, R.drawable.arrowhead_plant),
+        PlantType(R.string.arrowhead_plant, R.drawable.arrowhead_plant),
         onItemClick = {})
 }
