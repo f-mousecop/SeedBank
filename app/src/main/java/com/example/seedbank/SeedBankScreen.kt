@@ -23,7 +23,7 @@ fun SeedBankApp() {
         backStackEntry?.destination?.route ?: SeedBankScreen.Start.name
     )
 
-    val dataViewModel = viewModel<DataViewModel>()
+//    val dataViewModel = viewModel<DataViewModel>()
 
     DetailedNavDrawer(
         navController = navController,

@@ -14,11 +14,13 @@ import com.example.seedbank.ui.DataViewModel
 import com.example.seedbank.ui.HomeScreen
 import com.example.seedbank.ui.ImageLogsScreen
 import com.example.seedbank.ui.InsertionScreen
+import com.example.seedbank.ui.PlantEntryScreen
 import com.example.seedbank.ui.PlantList
 
 enum class SeedBankScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     ImageLogs(title = R.string.image_bank),
+    PlantEntry(title = R.string.plant_entry),
     Insertion(title = R.string.insert_new),
     Seeds(title = R.string.insert_seeds),
     PlantLogs(title = R.string.plant_log)
@@ -29,7 +31,7 @@ fun ComposeNavigation(
     modifier: Modifier = Modifier,
     navController: NavHostController
     ) {
-    val dataViewModel = viewModel<DataViewModel>()
+//    val dataViewModel = viewModel<DataViewModel>()
     NavHost(
         modifier = modifier,
         navController = navController,
@@ -42,22 +44,31 @@ fun ComposeNavigation(
             )
         }
 
-        composable(route = SeedBankScreen.Insertion.name) {
+        composable(route = SeedBankScreen.PlantEntry.name) {
+            PlantEntryScreen(
+                navController = navController,
+                navigateBack = { navController.popBackStack() },
+                navigateUp = { navController.navigateUp() },
+                onItemClick = { navController.navigate(SeedBankScreen.Start.name)}
+            )
+        }
+
+        /*composable(route = SeedBankScreen.Insertion.name) {
             InsertionScreen(
                 navController = navController,
                 dataViewModel = dataViewModel,
                 onItemClick = { navController.navigate(route = SeedBankScreen.Seeds.name) },
                 modifier = Modifier.fillMaxSize()
             )
-        }
+        }*/
 
-        composable(route = SeedBankScreen.Seeds.name) {
+        /*composable(route = SeedBankScreen.Seeds.name) {
             AddSeedsScreen(
                 dataViewModel = dataViewModel,
                 navController = navController,
                 modifier = Modifier.fillMaxSize()
             )
-        }
+        }*/
 
         composable(route = SeedBankScreen.ImageLogs.name) {
             ImageLogsScreen(

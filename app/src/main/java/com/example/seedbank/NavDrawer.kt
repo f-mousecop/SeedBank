@@ -98,6 +98,21 @@ fun DetailedNavDrawer(
                     )
 
                     NavigationDrawerItem(
+                        label = { Text("Plant Entry") },
+                        selected = false,
+                        icon = { Icon(Icons.Default.Add, contentDescription = null)},
+                        onClick =  {
+                            println("hello")
+                            scope.launch {
+                                drawerState.close()
+                            }
+                            navController.navigate(SeedBankScreen.PlantEntry.name) {
+                                popUpTo(0)
+                            }
+                        }
+                    )
+
+                    NavigationDrawerItem(
                         label = { Text("Log Plant") },
                         selected = false,
                         icon = { Icon(Icons.Default.Add, contentDescription = null)},

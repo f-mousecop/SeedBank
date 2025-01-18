@@ -11,5 +11,12 @@
     <string name="insert_seeds">Add Seeds</string>
     <string name="back_button">Back</string>
     <string name="title_activity_seed_bank_screen">SeedBankScreen</string>
+    <string name="plant_name_req">Plant Name</string>
+    <string name="spec_name_req">Species Name</string>
+    <string name="type_req">Type</string>
+    <string name="growth_time_req">Growth Time</string>
+    <string name="quantity_req">Quantity</string>
+    <string name="required_fields">*required fields</string>
+    <string name="plant_entry">Plant Entry</string>
 
 </resources>

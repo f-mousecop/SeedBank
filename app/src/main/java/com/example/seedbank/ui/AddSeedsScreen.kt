@@ -40,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.seedbank.data.PlantDatabase
 import com.example.seedbank.ui.theme.SeedBankTheme
 
 @Composable
@@ -74,11 +75,11 @@ fun AddSeedsScreen(
             Spacer(modifier = Modifier.height(24.dp))
             HorizontalDivider()
 
-            SeedList(
+            /*SeedList(
                 seedList = seedList,
                 onSeedToggled = dataViewModel::toggleSeed,
                 onSeedDeleted = dataViewModel::deleteSeed
-            )
+            )*/
 
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -156,10 +157,6 @@ fun AddSeedInput(onSeedAdded: (String) -> Unit) {
 @Composable
 private fun SeedScreenPreview() {
     SeedBankTheme {
-        AddSeedsScreen(
-            dataViewModel = DataViewModel(),
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
+
     }
 }

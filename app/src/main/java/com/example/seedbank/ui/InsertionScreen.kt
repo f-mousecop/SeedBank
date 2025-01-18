@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.seedbank.ui.theme.SeedBankTheme
@@ -47,6 +48,7 @@ fun InsertionScreen(
     dataViewModel: DataViewModel,
     navController: NavController,
     onItemClick: () -> Unit,
+    viewModel: PlantEntryViewModel = viewModel(factory = AppViewModelProvider.Factory),
     modifier: Modifier
 ) {
     val plantList = dataViewModel.plantList
@@ -68,14 +70,14 @@ fun InsertionScreen(
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-            AddPlantInput(onPlantAdded = { dataViewModel.addPlant(it) })
+//            AddPlantInput(onPlantAdded = { dataViewModel.addPlant(it) })
             Spacer(modifier = Modifier.height(24.dp))
             HorizontalDivider()
-            PlantList(
+            /*PlantList(
                 plantList = plantList,
                 onPlantToggled = dataViewModel::togglePlant,
                 onPlantDeleted = dataViewModel::deletePlant
-            )
+            )*/
 
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -147,7 +149,7 @@ fun AddItemInput(
 }*/
 
 
-@Composable
+/*@Composable
 fun AddPlantInput(onPlantAdded: (String) -> Unit) {
     var text by remember { mutableStateOf("") }
 
@@ -174,7 +176,7 @@ fun AddPlantInput(onPlantAdded: (String) -> Unit) {
             Text("Add")
         }
     }
-}
+}*/
 
 /*@Composable
 fun AddSeedInput(onSeedAdded: (String) -> Unit) {
@@ -197,7 +199,7 @@ fun AddSeedInput(onSeedAdded: (String) -> Unit) {
     }
 }*/
 
-@Composable
+/*@Composable
 fun PlantList(
     plantList: List<PlantData>,
     onPlantToggled: (Int) -> Unit,
@@ -207,16 +209,16 @@ fun PlantList(
         items(plantList) { plant ->
             PlantItemRow(plant, onPlantToggled, onPlantDeleted)
         }
-    }
+    }*/
     /*LazyColumn() {
         items(seedList) { seed ->
             SeedItemRow(seed, onSeedDeleted)
         }
     }*/
-}
+//}
 
 
-@Composable
+/*@Composable
 fun PlantItemRow(plant: PlantData,
                  onPlantToggled: (Int) -> Unit,
                  onPlantDeleted: (Int) -> Unit
@@ -236,9 +238,10 @@ fun PlantItemRow(plant: PlantData,
             Icon(Icons.Filled.Delete, contentDescription = "Delete")
         }
     }
-}
+}*/
 
 
+/*
 @Preview (showBackground = true)
 @Composable
 fun InsertionScreenPreview() {
@@ -250,4 +253,4 @@ fun InsertionScreenPreview() {
             modifier = Modifier
         )
     }
-}
+}*/
