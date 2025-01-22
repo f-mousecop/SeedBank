@@ -10,7 +10,7 @@ data class Plant(
     val name: String,
     val species: String,
     val type: String,
-    val growthTime: Double,
+    val growthTime: String,
     val quantity: Int
 )
 

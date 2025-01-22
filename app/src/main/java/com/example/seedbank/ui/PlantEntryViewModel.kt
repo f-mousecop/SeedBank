@@ -60,7 +60,7 @@ fun PlantData.toPlant(): Plant = Plant(
     name = name,
     species = species,
     type = type,
-    growthTime = growthTime.toDoubleOrNull() ?: 0.0,
+    growthTime = growthTime,
     quantity = quantity.toIntOrNull() ?: 0
 )
 
@@ -74,6 +74,6 @@ fun Plant.toPlantData(): PlantData = PlantData(
     name = name,
     species = species,
     type = type,
-    growthTime = growthTime.toString(),
+    growthTime = growthTime,
     quantity = quantity.toString()
 )
