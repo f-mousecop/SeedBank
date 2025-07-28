@@ -24,4 +24,7 @@ interface PlantDao {
 
     @Query("SELECT * from plants ORDER BY name ASC")
     fun getAllPlants(): Flow<List<Plant>>
+
+    @Query("SELECT COUNT(*) FROM plants")
+    fun getPlantCount(): Flow<Int>
 }

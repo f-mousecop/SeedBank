@@ -31,4 +31,9 @@ interface PlantRepository {
      * Update plant in data source
      * */
     suspend fun updatePlant(plant: Plant)
+
+    /**
+     * Get current number of plants in data source
+     */
+    fun getPlantCount(): Flow<Int>
 }

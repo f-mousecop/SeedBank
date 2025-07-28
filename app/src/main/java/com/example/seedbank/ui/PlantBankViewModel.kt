@@ -19,6 +19,13 @@ class PlantBankViewModel(private val plantsRepository: PlantRepository) : ViewMo
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = PlantBankUiState()
             )
+//    val plantCount: Flow<Int> = plantsRepository.getPlantCount()
+    val plantCount: StateFlow<Int> = plantsRepository.getPlantCount()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = 0
+        )
     fun deletePlant(plant: Plant) {
         viewModelScope.launch {
             plantsRepository.deletePlant(plant)

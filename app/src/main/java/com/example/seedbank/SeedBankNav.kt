@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.seedbank.data.Datasource
+import com.example.seedbank.ui.AddSeedsScreen
 import com.example.seedbank.ui.HomeScreen
 import com.example.seedbank.ui.ImageLogsScreen
 import com.example.seedbank.ui.PlantBankScreen
@@ -69,13 +70,12 @@ fun ComposeNavigation(
             )
         }*/
 
-        /*composable(route = SeedBankScreen.Seeds.name) {
+        composable(route = SeedBankScreen.Seeds.name) {
             AddSeedsScreen(
-                dataViewModel = dataViewModel,
                 navController = navController,
                 modifier = Modifier.fillMaxSize()
             )
-        }*/
+        }
 
         composable(route = SeedBankScreen.ImageLogs.name) {
             ImageLogsScreen(

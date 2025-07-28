@@ -1,7 +1,6 @@
 package com.example.seedbank.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,17 +38,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.seedbank.data.PlantDatabase
 import com.example.seedbank.ui.theme.SeedBankTheme
 
 @Composable
 fun AddSeedsScreen(
-    dataViewModel: DataViewModel,
     navController: NavController,
     modifier: Modifier
 ) {
-    val seedList = dataViewModel.seedList
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -68,9 +63,6 @@ fun AddSeedsScreen(
                 text = "Add new seeds",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(bottom = 8.dp)
-            )
-            AddSeedInput(
-                onSeedAdded = { dataViewModel.addSeed(it) }
             )
             Spacer(modifier = Modifier.height(24.dp))
             HorizontalDivider()

@@ -1,8 +1,6 @@
 package com.example.seedbank.ui
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateListOf
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import com.example.seedbank.data.PlantRepository
 

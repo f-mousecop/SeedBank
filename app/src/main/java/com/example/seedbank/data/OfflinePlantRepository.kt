@@ -12,4 +12,6 @@ class OfflinePlantRepository(private val plantDao: PlantDao) : PlantRepository {
     override suspend fun deletePlant(plant: Plant) = plantDao.delete(plant)
 
     override suspend fun updatePlant(plant: Plant) = plantDao.update(plant)
+
+    override fun getPlantCount(): Flow<Int> = plantDao.getPlantCount()
 }

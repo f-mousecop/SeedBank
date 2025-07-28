@@ -12,7 +12,8 @@ android {
     defaultConfig {
         applicationId = "com.example.seedbank"
         minSdk = 24
-        targetSdk = 34
+        //noinspection EditedTargetSdkVersion
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
