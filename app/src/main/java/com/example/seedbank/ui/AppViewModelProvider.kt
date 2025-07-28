@@ -20,6 +20,10 @@ object AppViewModelProvider {
         initializer {
             PlantBankViewModel(seedBankApplication().container.plantRepository)
         }
+
+        initializer {
+            TodoViewModel(seedBankApplication().container.todoRepository)
+        }
     }
 }
 

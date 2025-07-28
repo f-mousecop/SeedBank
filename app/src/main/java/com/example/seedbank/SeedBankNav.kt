@@ -14,6 +14,7 @@ import com.example.seedbank.ui.ImageLogsScreen
 import com.example.seedbank.ui.PlantBankScreen
 import com.example.seedbank.ui.PlantEntryScreen
 import com.example.seedbank.ui.PlantList
+import com.example.seedbank.ui.TODOScreen
 
 enum class SeedBankScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
@@ -22,7 +23,8 @@ enum class SeedBankScreen(@StringRes val title: Int) {
     PlantBank(title = R.string.plant_bank),
     Insertion(title = R.string.insert_new),
     Seeds(title = R.string.insert_seeds),
-    PlantLogs(title = R.string.plant_log)
+    PlantLogs(title = R.string.plant_log),
+    TODO(title = R.string.todo_list)
 }
 
 @Composable
@@ -90,6 +92,10 @@ fun ComposeNavigation(
                 navController = navController,
                 onItemClick = { navController.navigate(route = SeedBankScreen.Start.name) }
             )
+        }
+
+        composable(route = SeedBankScreen.TODO.name) {
+            TODOScreen()
         }
     }
 }

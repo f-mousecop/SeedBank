@@ -7,6 +7,7 @@ import android.content.Context
  * */
 interface AppContainer {
     val plantRepository: PlantRepository
+    val todoRepository: TodoRepository
 }
 
 /***
@@ -18,5 +19,9 @@ class AppDataContainer(private val context: Context) : AppContainer {
      * */
     override val plantRepository: PlantRepository by lazy {
         OfflinePlantRepository(PlantDatabase.getDatabase(context).plantDao())
+    }
+
+    override val todoRepository: TodoRepository by lazy {
+        TodoRepository(PlantDatabase.getDatabase(context).todoDao())
     }
 }

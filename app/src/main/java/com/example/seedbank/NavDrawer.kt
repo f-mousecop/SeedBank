@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
@@ -186,6 +187,20 @@ fun DetailedNavDrawer(
                                 drawerState.close()
                             }
                             navController.navigate(SeedBankScreen.PlantLogs.name) {
+                                popUpTo(-1)
+                            }
+                        }
+                    )
+
+                    NavigationDrawerItem(
+                        label = { Text("TODO") },
+                        selected = false,
+                        icon = { Icon(Icons.Default.Edit, contentDescription = null) },
+                        onClick = {
+                            scope.launch {
+                                drawerState.close()
+                            }
+                            navController.navigate(SeedBankScreen.TODO.name) {
                                 popUpTo(-1)
                             }
                         }
