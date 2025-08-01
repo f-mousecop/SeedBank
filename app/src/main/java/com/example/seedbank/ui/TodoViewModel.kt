@@ -20,4 +20,11 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
             repository.deleteNote(note)
         }
     }
+
+    fun toggleNoteCompletion(note: TodoNote) {
+        val updatedNote = note.copy(completed = !note.completed)
+        viewModelScope.launch {
+            repository.updateNote(updatedNote)
+        }
+    }
 }

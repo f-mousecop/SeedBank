@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,6 +15,9 @@ interface TodoDao {
 
     @Delete
     suspend fun delete(note: TodoNote)
+
+    @Update
+    suspend fun updateNote(note: TodoNote)
 
     @Query("SELECT * FROM todo_notes ORDER BY timestamp DESC")
     fun getAllNotes(): Flow<List<TodoNote>>

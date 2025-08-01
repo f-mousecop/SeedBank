@@ -12,4 +12,8 @@ class TodoRepository(private val todoDao: TodoDao) {
     suspend fun deleteNote(note: TodoNote) {
         todoDao.delete(note)
     }
+
+    suspend fun updateNote(note: TodoNote) {
+        todoDao.updateNote(note)
+    }
 }
