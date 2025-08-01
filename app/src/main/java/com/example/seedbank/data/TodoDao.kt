@@ -19,6 +19,6 @@ interface TodoDao {
     @Update
     suspend fun updateNote(note: TodoNote)
 
-    @Query("SELECT * FROM todo_notes ORDER BY timestamp DESC")
+    @Query("SELECT * FROM todo_notes ORDER BY timestamp ASC")
     fun getAllNotes(): Flow<List<TodoNote>>
 }
